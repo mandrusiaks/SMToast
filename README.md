@@ -5,9 +5,6 @@
 [![License](https://img.shields.io/cocoapods/l/SMToast.svg?style=flat)](http://cocoapods.org/pods/SMToast)
 [![Platform](https://img.shields.io/cocoapods/p/SMToast.svg?style=flat)](http://cocoapods.org/pods/SMToast)
 
-
-## Requirements
-
 ## Installation
 
 ### CocoaPods
@@ -21,8 +18,21 @@ pod "SMToast"
 
 ###Manual
 
-Alternatively, you can simply add ```SMToast.swift``` to your project.## Author
+Alternatively, you can simply add ```SMToast.swift``` to your project.
 
+## Basic Example
+
+SMToast is extremely simple to use. Use one of the following command to display a toast.
+
+```swift
+
+    SMToast.make(title: "Hello", message: "This is a test toast")
+
+    SMToast.make(message: "This is a test toast")
+
+    SMToast.make(title: "Hello")
+
+```
 
 ## License
 
