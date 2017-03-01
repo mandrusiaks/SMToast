@@ -12,6 +12,7 @@ class ViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        SMToast.make(title: "Hello", message: "This is a test toast")
     }
 }
 
