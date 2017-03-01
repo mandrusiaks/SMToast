@@ -20,9 +20,9 @@ pod "SMToast"
 
 Alternatively, you can simply add ```SMToast.swift``` to your project.
 
-## Basic Example
+## Basic Examples
 
-SMToast is extremely simple to use. Use one of the following command to display a toast.
+SMToast is extremely simple to use. Use one of the following commands to display a toast.
 
 ```swift
 
