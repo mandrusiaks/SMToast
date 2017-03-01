@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'SMToast_Example' do
+  pod 'SMToast', :path => '../'
+
+  target 'SMToast_Tests' do
+    inherit! :search_paths
+
+    pod 'FBSnapshotTestCase'
+  end
+end
