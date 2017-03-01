@@ -5,13 +5,12 @@
 [![License](https://img.shields.io/cocoapods/l/SMToast.svg?style=flat)](http://cocoapods.org/pods/SMToast)
 [![Platform](https://img.shields.io/cocoapods/p/SMToast.svg?style=flat)](http://cocoapods.org/pods/SMToast)
 
-## Example
-
-To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## Requirements
 
 ## Installation
+
+### CocoaPods
 
 SMToast is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
@@ -20,9 +19,10 @@ it, simply add the following line to your Podfile:
 pod "SMToast"
 ```
 
-## Author
+###Manual
 
-mandrusiaks, mandrusiaks@users.noreply.github.com
+Alternatively, you can simply add ```SMToast.swift``` to your project.## Author
+
 
 ## License
 
