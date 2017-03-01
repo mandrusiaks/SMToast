@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F1F11771E66C876005F8E61 /* SMToast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F1F11761E66C876005F8E61 /* SMToast.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -29,7 +30,8 @@
 
 /* Begin PBXFileReference section */
 		080F3BDC3C984163DD27DAD1 /* Pods_SMToast_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SMToast_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		0A48DF2645860AB8FA3066FA /* SMToast.podspec */ = {isa = PBXFileReference; includeInIndex = 1; name = SMToast.podspec; path = ../SMToast.podspec; sourceTree = "<group>"; };
+		0A48DF2645860AB8FA3066FA /* SMToast.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = SMToast.podspec; path = ../SMToast.podspec; sourceTree = "<group>"; };
+		3F1F11761E66C876005F8E61 /* SMToast.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMToast.swift; sourceTree = "<group>"; };
 		4DBAC8C5A7903FAA395C19B8 /* Pods-SMToast_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMToast_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SMToast_Example/Pods-SMToast_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		502A1E5B60C6F31C92F8C374 /* Pods_SMToast_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SMToast_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD01AFB9204008FA782 /* SMToast_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SMToast_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -43,8 +45,8 @@
 		607FACEA1AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		607FACEB1AFB9204008FA782 /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
 		660A6700D41C099CAAE641A0 /* Pods-SMToast_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMToast_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-SMToast_Example/Pods-SMToast_Example.release.xcconfig"; sourceTree = "<group>"; };
-		7D1942B7A581C65E1BAABB1A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		C9DD82FFBEE38094E6F6D806 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; name = README.md; path = ../README.md; sourceTree = "<group>"; };
+		7D1942B7A581C65E1BAABB1A /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		C9DD82FFBEE38094E6F6D806 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		D8E861FC666316A197AA1841 /* Pods-SMToast_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMToast_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SMToast_Tests/Pods-SMToast_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		FDA35C2C4BE04CA0CB78A92D /* Pods-SMToast_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SMToast_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SMToast_Tests/Pods-SMToast_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -80,6 +82,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		3F1F116F1E66C4DA005F8E61 /* SMToast */ = {
+			isa = PBXGroup;
+			children = (
+				3F1F11761E66C876005F8E61 /* SMToast.swift */,
+			);
+			name = SMToast;
+			sourceTree = "<group>";
+		};
 		478BFDF7EEA597F1395E51B3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +123,7 @@
 		607FACD21AFB9204008FA782 /* Example for SMToast */ = {
 			isa = PBXGroup;
 			children = (
+				3F1F116F1E66C4DA005F8E61 /* SMToast */,
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
@@ -306,7 +317,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run \'pod install\' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		BB17646782F5EC65226800FA /* [CP] Check Pods Manifest.lock */ = {
@@ -321,7 +332,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run \'pod install\' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		C5EAEDAB323E8207FFB969D0 /* [CP] Embed Pods Frameworks */ = {
@@ -363,6 +374,7 @@
 			files = (
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				3F1F11771E66C876005F8E61 /* SMToast.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
