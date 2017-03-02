@@ -96,6 +96,7 @@ extension SMToast {
 extension SMToast {
     class func make(title: String = "", message: String = "", toastColor: UIColor = .black, fontColor: UIColor = .white) {
         guard let topView = UIApplication.topViewController()?.view else { return }
+        if title == "" && message == "" { return }
         let toast = SMToast(title: title, message: message, toastColor: toastColor, fontColor: fontColor)
         toast.center.x = topView.center.x
         present(toast: toast)
