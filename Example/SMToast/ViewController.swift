@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SMToast
 
 class ViewController: UIViewController {
 
@@ -15,4 +16,3 @@ class ViewController: UIViewController {
         SMToast.make(title: "Hello", message: "This is a test toast", toastColor: .blue, fontColor: .white)
     }
 }
-
