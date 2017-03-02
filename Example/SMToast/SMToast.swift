@@ -11,62 +11,75 @@ import UIKit
 
 public class SMToast: UIView {
 
+
+    //MARK: - Configuration Variables
+    fileprivate let cornerRadius: CGFloat = 15
+
+    //MARK: - View Components
+    var view: UIView!
     var titleLabel: UILabel!
     var messageLabel: UILabel!
 
+    //MARK: - Initialization
     required public init?(coder decoder: NSCoder) {
         super.init(coder: decoder)
     }
 
-    public init(title: String = "", message: String = "") {
+    public init(title: String, message: String, toastColor: UIColor, fontColor: UIColor) {
         let frame = CGRect(x: 0, y: UIScreen.main.bounds.height*0.8, width: 0, height: 0)
         super.init(frame: frame)
-        initialSetup(title: title, message: message)
+        initialSetup(title: title, message: message, toastColor: toastColor, fontColor: fontColor)
     }
 
     override public func sizeThatFits(_ size: CGSize) -> CGSize {
         super.sizeThatFits(size)
         let (width, height) = sizeComponents()
+        view.frame = CGRect(x: 0, y: 0, width: width, height: height)
         return CGSize(width: width, height: height)
     }
 }
 
 //MARK: - Setup
 extension SMToast {
-    fileprivate func initialSetup(title: String, message: String) {
-        setupView()
-        formatTitleLabel(title)
-        formatMessageLabel(message)
+    fileprivate func initialSetup(title: String, message: String, toastColor: UIColor, fontColor: UIColor) {
+        setup(toastColor)
+        formatTitleLabel(title, fontColor: fontColor)
+        formatMessageLabel(message, fontColor: fontColor)
         addSubview(titleLabel!)
         addSubview(messageLabel!)
         sizeToFit()
         adjustPosition()
     }
-    private func setupView() {
+    private func setup(_ toastColor: UIColor) {
         alpha = 0.0
-        backgroundColor = .black
-        layer.cornerRadius = 15
+        backgroundColor = .clear
+        layer.cornerRadius = cornerRadius
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowRadius = 3
         layer.shadowOffset = CGSize(width: 0, height: 3)
         layer.shadowOpacity = 0.66
-    }
 
-    private func formatTitleLabel(_ title: String) {
+        view = UIView()
+        view.alpha = 0.8
+        view.backgroundColor = toastColor
+        view.layer.cornerRadius = cornerRadius
+        addSubview(view)
+    }
+    private func formatTitleLabel(_ title: String, fontColor: UIColor) {
         titleLabel = UILabel(frame: .zero)
         titleLabel.font = UIFont.systemFont(ofSize: 15, weight: UIFontWeightSemibold)
         titleLabel.textAlignment = .center
-        titleLabel.textColor = .white
+        titleLabel.textColor = fontColor
         titleLabel.numberOfLines = 2
         titleLabel.text = title
         titleLabel.sizeToFit()
     }
-    private func formatMessageLabel(_ message: String) {
+    private func formatMessageLabel(_ message: String, fontColor: UIColor) {
         let frame = CGRect(x: 0, y: titleLabel!.frame.height, width: 0, height: 0)
         messageLabel = UILabel(frame: frame)
         messageLabel.font = UIFont.systemFont(ofSize: 13, weight: UIFontWeightLight)
         messageLabel.textAlignment = .center
-        messageLabel.textColor = .white
+        messageLabel.textColor = fontColor
         messageLabel.numberOfLines = 4
         messageLabel.text = message
         messageLabel.sizeToFit()
@@ -81,9 +94,9 @@ extension SMToast {
 
 //MARK: - Make
 extension SMToast {
-    class func make(title: String = "", message: String = "") {
+    class func make(title: String = "", message: String = "", toastColor: UIColor = .black, fontColor: UIColor = .white) {
         guard let topView = UIApplication.topViewController()?.view else { return }
-        let toast = SMToast(title: title, message: message)
+        let toast = SMToast(title: title, message: message, toastColor: toastColor, fontColor: fontColor)
         toast.center.x = topView.center.x
         present(toast: toast)
     }
