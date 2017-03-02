@@ -5,6 +5,8 @@
 [![License](https://img.shields.io/cocoapods/l/SMToast.svg?style=flat)](http://cocoapods.org/pods/SMToast)
 [![Platform](https://img.shields.io/cocoapods/p/SMToast.svg?style=flat)](http://cocoapods.org/pods/SMToast)
 
+SMToast provides a fast and simple way to display a short message. Great for showing error messages during development. 
+
 ## Installation
 
 ### CocoaPods
@@ -22,9 +24,13 @@ Alternatively, you can simply add ```SMToast.swift``` to your project.
 
 ## Basic Examples
 
-SMToast is extremely simple to use. Use one of the following commands to display a toast.
+SMToast is extremely simple to use. Below are examples of how to user SMToast. 
 
 ```swift
+
+    SMToast.make(title: "Hello", message: "This is a test toast", toastColor: .blue, fontColor: .white)
+
+    SMToast.make(title: "Hello", toastColor: .blue)
 
     SMToast.make(title: "Hello", message: "This is a test toast")
 
