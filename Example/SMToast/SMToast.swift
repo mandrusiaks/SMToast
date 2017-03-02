@@ -85,14 +85,14 @@ extension SMToast {
         guard let topView = UIApplication.topViewController()?.view else { return }
         let toast = SMToast(title: title, message: message)
         toast.center.x = topView.center.x
-        present(topView, toast: toast)
+        present(toast: toast)
     }
 }
 
 //MARK: - Animation
 extension SMToast {
-    fileprivate class func present(_ view: UIView, toast: SMToast) {
-        view.addSubview(toast)
+    fileprivate class func present(toast: SMToast) {
+        UIApplication.shared.keyWindow?.addSubview(toast)
         UIView.animate(withDuration: 1, animations: {
             toast.alpha = 0.75
         }) { _ in
