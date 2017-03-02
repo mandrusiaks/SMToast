@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SMToast'
-  s.version          = '0.1.0'
+  s.version          = '0.1.1'
   s.summary          = 'SMToast is a simple way to display a message.'
 
 # This description is used to generate tags and improve search results.
