@@ -27,7 +27,7 @@ Alternatively, you can simply add ```SMToast.swift``` to your project.
 
 ## Basic Examples
 
-SMToast is extremely simple to use. Below show a few of SMToast's convenience initialization methods.
+SMToast is extremely simple to use. Below shows a few of SMToast's convenience initialization methods.
 
 ```swift
 
