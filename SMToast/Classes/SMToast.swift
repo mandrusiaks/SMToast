@@ -13,21 +13,103 @@ public class SMToast: UIView {
 
     //MARK: - Configuration Variables
     fileprivate let cornerRadius: CGFloat = 15
+    fileprivate var title: String = ""
+    fileprivate var message: String = ""
+    fileprivate var toastColor: UIColor = .black
+    fileprivate var fontColor: UIColor = .white
+    fileprivate var duration: TimeInterval = 2
+    fileprivate var fadeDuration: TimeInterval = 1
 
     //MARK: - View Components
-    var view: UIView!
-    var titleLabel: UILabel!
-    var messageLabel: UILabel!
+    fileprivate var view: UIView!
+    fileprivate var titleLabel: UILabel!
+    fileprivate var messageLabel: UILabel!
 
     //MARK: - Initialization
     required public init?(coder decoder: NSCoder) {
         super.init(coder: decoder)
     }
 
-    public init(title: String, message: String, toastColor: UIColor, fontColor: UIColor) {
+    public init(title: String = "", message: String = "", toastColor: UIColor = .black,
+                fontColor: UIColor = .white, duration: TimeInterval = 3.0, fadeDuration: TimeInterval = 1.0) {
+        self.title = title
+        self.message = message
+        self.toastColor = toastColor
+        self.fontColor = fontColor
+        self.duration = duration
+        self.fadeDuration = fadeDuration
         let frame = CGRect(x: 0, y: UIScreen.main.bounds.height*0.8, width: 0, height: 0)
         super.init(frame: frame)
-        initialSetup(title: title, message: message, toastColor: toastColor, fontColor: fontColor)
+        initialSetup()
+    }
+    convenience init(message: String) {
+        self.init(title: .defaultString, message: message, toastColor: .defaultToastColor,
+                  fontColor: .defaultFontColor, duration: .defaultDuration, fadeDuration: .defaultFadeDuration)
+    }
+    convenience init(message: String, duration: TimeInterval) {
+        self.init(title: .defaultString, message: message, toastColor: .defaultToastColor,
+                  fontColor: .defaultFontColor, duration: duration, fadeDuration: .defaultFadeDuration)
+    }
+    convenience init(message: String, toastColor: UIColor) {
+        self.init(title: .defaultString, message: message, toastColor: toastColor,
+                  fontColor: .defaultFontColor, duration: .defaultDuration, fadeDuration: .defaultFadeDuration)
+    }
+    convenience init(message: String, toastColor: UIColor, fontColor: UIColor) {
+        self.init(title: .defaultString, message: message, toastColor: toastColor,
+                  fontColor: fontColor, duration: .defaultDuration, fadeDuration: .defaultFadeDuration)
+    }
+    convenience init(message: String, toastColor: UIColor, duration: TimeInterval) {
+        self.init(title: .defaultString, message: message, toastColor: toastColor,
+                  fontColor: .defaultFontColor, duration: duration, fadeDuration: .defaultFadeDuration)
+    }
+    convenience init(message: String, toastColor: UIColor, fontColor: UIColor, duration: TimeInterval) {
+        self.init(title: .defaultString, message: message, toastColor: toastColor,
+                  fontColor: fontColor, duration: duration, fadeDuration: .defaultFadeDuration)
+    }
+    convenience init(title: String) {
+        self.init(title: title, message: .defaultString, toastColor: .defaultToastColor,
+                  fontColor: .defaultFontColor, duration: .defaultDuration, fadeDuration: .defaultFadeDuration)
+    }
+    convenience init(title: String, duration: TimeInterval) {
+        self.init(title: title, message: .defaultString, toastColor: .defaultToastColor,
+                  fontColor: .defaultFontColor, duration: duration, fadeDuration: .defaultFadeDuration)
+    }
+    convenience init(title: String, toastColor: UIColor) {
+        self.init(title: title, message: .defaultString, toastColor: toastColor,
+                  fontColor: .defaultFontColor, duration: .defaultDuration, fadeDuration: .defaultFadeDuration)
+    }
+    convenience init(title: String, toastColor: UIColor, fontColor: UIColor) {
+        self.init(title: title, message: .defaultString, toastColor: toastColor,
+                  fontColor: fontColor, duration: .defaultDuration, fadeDuration: .defaultFadeDuration)
+    }
+    convenience init(title: String, toastColor: UIColor, duration: TimeInterval) {
+        self.init(title: title, message: .defaultString, toastColor: toastColor,
+                  fontColor: .defaultFontColor, duration: duration, fadeDuration: .defaultFadeDuration)
+    }
+    convenience init(title: String, toastColor: UIColor, fontColor: UIColor, duration: TimeInterval) {
+        self.init(title: title, message: .defaultString, toastColor: toastColor,
+                  fontColor: fontColor, duration: duration, fadeDuration: .defaultFadeDuration)
+    }
+    convenience init(title: String, message: String) {
+        self.init(title: title, message: message, toastColor: .defaultToastColor,
+                  fontColor: .defaultFontColor, duration: .defaultDuration, fadeDuration: .defaultFadeDuration)
+    }
+    convenience init(title: String, message: String, toastColor: UIColor) {
+        self.init(title: title, message: message, toastColor: toastColor,
+                  fontColor: .defaultFontColor, duration: .defaultDuration, fadeDuration: .defaultFadeDuration)
+    }
+    convenience init(title: String, message: String, duration: TimeInterval) {
+        self.init(title: title, message: message, toastColor: .defaultToastColor,
+                  fontColor: .defaultFontColor, duration: duration, fadeDuration: .defaultFadeDuration)
+    }
+    convenience init(title: String, message: String, toastColor: UIColor, duration: TimeInterval) {
+        self.init(title: title, message: message, toastColor: toastColor,
+                  fontColor: .defaultFontColor, duration: duration, fadeDuration: .defaultFadeDuration)
+    }
+    convenience init(title: String, message: String, toastColor: UIColor,
+                            fontColor: UIColor, duration: TimeInterval) {
+        self.init(title: title, message: message, toastColor: toastColor,
+                  fontColor: fontColor, duration: duration, fadeDuration: .defaultFadeDuration)
     }
 
     override public func sizeThatFits(_ size: CGSize) -> CGSize {
@@ -40,22 +122,22 @@ public class SMToast: UIView {
 
 //MARK: - Setup
 extension SMToast {
-    fileprivate func initialSetup(title: String, message: String, toastColor: UIColor, fontColor: UIColor) {
-        setup(toastColor)
-        formatTitleLabel(title, fontColor: fontColor)
-        formatMessageLabel(message, fontColor: fontColor)
+    fileprivate func initialSetup() {
+        setup()
+        formatTitleLabel()
+        formatMessageLabel()
         addSubview(titleLabel!)
         addSubview(messageLabel!)
         sizeToFit()
         adjustPosition()
     }
-    private func setup(_ toastColor: UIColor) {
+    private func setup() {
         alpha = 0.0
         backgroundColor = .clear
         layer.cornerRadius = cornerRadius
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowRadius = 3
-        layer.shadowOffset = CGSize(width: 0, height: 3)
+        layer.shadowOffset = CGSize(width: 0, height: 2)
         layer.shadowOpacity = 0.66
 
         view = UIView()
@@ -64,7 +146,7 @@ extension SMToast {
         view.layer.cornerRadius = cornerRadius
         addSubview(view)
     }
-    private func formatTitleLabel(_ title: String, fontColor: UIColor) {
+    private func formatTitleLabel() {
         titleLabel = UILabel(frame: .zero)
         titleLabel.font = UIFont.systemFont(ofSize: 15, weight: UIFontWeightSemibold)
         titleLabel.textAlignment = .center
@@ -73,7 +155,7 @@ extension SMToast {
         titleLabel.text = title
         titleLabel.sizeToFit()
     }
-    private func formatMessageLabel(_ message: String, fontColor: UIColor) {
+    private func formatMessageLabel() {
         let frame = CGRect(x: 0, y: titleLabel!.frame.height, width: 0, height: 0)
         messageLabel = UILabel(frame: frame)
         messageLabel.font = UIFont.systemFont(ofSize: 13, weight: UIFontWeightLight)
@@ -93,26 +175,25 @@ extension SMToast {
 
 //MARK: - Make
 public extension SMToast {
-    class func make(title: String = "", message: String = "", toastColor: UIColor = .black, fontColor: UIColor = .white) {
+    func make() {
         guard let topView = UIApplication.topViewController()?.view else { return }
         if title == "" && message == "" { return }
-        let toast = SMToast(title: title, message: message, toastColor: toastColor, fontColor: fontColor)
-        toast.center.x = topView.center.x
-        present(toast: toast)
+        center.x = topView.center.x
+        present()
     }
 }
 
 //MARK: - Animation
 extension SMToast {
-    fileprivate class func present(toast: SMToast) {
-        UIApplication.shared.keyWindow?.addSubview(toast)
-        UIView.animate(withDuration: 1, animations: {
-            toast.alpha = 0.75
+    fileprivate func present() {
+        UIApplication.shared.keyWindow?.addSubview(self)
+        UIView.animate(withDuration: fadeDuration, animations: {
+            self.alpha = 0.75
         }) { _ in
-            UIView.animate(withDuration: 1, delay: 2, options: [], animations: {
-                toast.alpha = 0.0
+            UIView.animate(withDuration: self.fadeDuration, delay: self.duration, options: [], animations: {
+                self.alpha = 0.0
             }, completion: { _ in
-                toast.removeFromSuperview()
+                self.removeFromSuperview()
             })
         }
     }
@@ -150,9 +231,9 @@ extension SMToast {
 
 
 
-/*=========================
+/**************************
         Extensions
- =========================*/
+ **************************/
 
 
 //MARK: - UIApplication
@@ -173,4 +254,27 @@ extension UIApplication {
         }
         return controller
     }
+}
+
+
+
+/****************************
+        Default Values
+ ****************************/
+
+//MARK: - String
+extension String {
+    static let defaultString = ""
+}
+
+//MARK: - UIColor 
+extension UIColor {
+    static let defaultToastColor: UIColor = .black
+    static let defaultFontColor: UIColor = .white
+}
+
+//MARK: - TimeInterval
+extension TimeInterval {
+    static let defaultDuration = 3.0
+    static let defaultFadeDuration = 1.0
 }

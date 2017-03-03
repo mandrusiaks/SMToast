@@ -13,6 +13,13 @@ class ViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        SMToast.make(title: "Hello", message: "This is a test toast", toastColor: .blue, fontColor: .white)
+        let toast = SMToast(title: "Test",
+                            message: "Test Toast",
+                            toastColor: .green,
+                            fontColor: .white,
+                            duration: 4,
+                            fadeDuration: 2)
+        toast.make()
     }
+
 }
