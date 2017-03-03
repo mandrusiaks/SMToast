@@ -5,7 +5,7 @@
 [![License](https://img.shields.io/cocoapods/l/SMToast.svg?style=flat)](http://cocoapods.org/pods/SMToast)
 [![Platform](https://img.shields.io/cocoapods/p/SMToast.svg?style=flat)](http://cocoapods.org/pods/SMToast)
 
-SMToast provides a fast and simple way to display a short message. Great for showing error messages during development. 
+SMToast provides a fast and simple way to display a short message. It works great for showing error messages during development or notifying users of successful actions. 
 
 | ![SMToast](SMToast/Assets/SMToast.png) | ![SMToast2](SMToast/Assets/SMToast2.png) |
 |:--------------------------------------:|:-----------------------------------------|
@@ -27,19 +27,31 @@ Alternatively, you can simply add ```SMToast.swift``` to your project.
 
 ## Basic Examples
 
-SMToast is extremely simple to use. Below are examples of how to user SMToast. 
+SMToast is extremely simple to use. Below show a few of SMToast's convenience initialization methods.
 
 ```swift
 
-    SMToast.make(title: "Hello", message: "This is a test toast", toastColor: .blue, fontColor: .white)
+    SMToast(title: "Hello").make()
 
-    SMToast.make(title: "Hello", toastColor: .blue)
+    SMToast(message: "This is a test toast").make()
+    
+    SMToast(title: "Hello", toastColor: .blue).make()
 
-    SMToast.make(title: "Hello", message: "This is a test toast")
+    SMToast(title: "Hello", message: "This is a test toast").make()
 
-    SMToast.make(message: "This is a test toast")
+    SMToast(title: "Hello", message: "This is a test toast", duration: 6).make()
 
-    SMToast.make(title: "Hello")
+    SMToast(title: "Hello", message: "This is a test toast", fadeDuration: 3).make()
+
+    SMToast(title: "Hello", message: "This is a test toast", toastColor: .blue, fontColor: .white).make()
+
+
+
+    //Example of SMToast being created with all properties customized
+
+    let toast = SMToast(title: "Hello", message: "This is a test toast", toastColor: .blue, 
+                        fontColor: .white, duration: 3, fadeDuration: 1)
+    toast.make()
 
 ```
 
