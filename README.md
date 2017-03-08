@@ -13,15 +13,16 @@ SMToast provides a fast and simple way to display a short message. It works grea
 ## Features
     
 SMToast has the following customizable components and capabilities:
-    * Title (2 line max)
-    * Message (4 line max)
-    * Color
-    * Font Color
-    * Fade Duration
-    * On-Screen Duration
-    * Present multiple SMToasts without overlaying one another
-    * Contains "onHold" queue for times when too many toast are being created<sup>1</sup>
-    * Draggable!
+
+* Title (2 line max)
+* Message (4 line max)
+* Color
+* Font Color
+* Fade Duration
+* On-Screen Duration
+* Present multiple SMToasts without overlaying one another
+* Contains "onHold" queue for times when too many toast are being created<sup>1</sup>
+* Draggable!
 
 <sup>1 SMToast's that are on hold will be presented with the same center as the most recently expired SMToast. This may cause new toasts to overlap older ones or be presented partially off screen (depending on size). Since SMToast's are draggable, this is not a big issue. However, the size of the new toast and positions of old toasts may be taken into account in the future when determining if an "onHold" toast should be presented.</sup>
 
