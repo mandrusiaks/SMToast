@@ -11,14 +11,19 @@ import UIKit
 
 public class SMToast: UIView {
 
+    //MARK: - Queue
+    fileprivate static var activeQueue = SMQueue()
+    fileprivate static var onHoldQueue = SMQueue()
+
     //MARK: - Configuration Variables
     fileprivate let cornerRadius: CGFloat = 15
-    fileprivate var title: String = ""
-    fileprivate var message: String = ""
-    fileprivate var toastColor: UIColor = .black
-    fileprivate var fontColor: UIColor = .white
-    fileprivate var duration: TimeInterval = 2
-    fileprivate var fadeDuration: TimeInterval = 1
+    let id: TimeInterval = Date().timeIntervalSince1970
+    var title: String = ""
+    var message: String = ""
+    var toastColor: UIColor = .black
+    var fontColor: UIColor = .white
+    var duration: TimeInterval = 2
+    var fadeDuration: TimeInterval = 1
 
     //MARK: - View Components
     fileprivate var view: UIView!
@@ -139,11 +144,13 @@ extension SMToast {
         layer.shadowRadius = 3
         layer.shadowOffset = CGSize(width: 0, height: 2)
         layer.shadowOpacity = 0.66
+        isUserInteractionEnabled = true
 
         view = UIView()
         view.alpha = 0.8
         view.backgroundColor = toastColor
         view.layer.cornerRadius = cornerRadius
+        view.isUserInteractionEnabled = true
         addSubview(view)
     }
     private func formatTitleLabel() {
@@ -153,6 +160,7 @@ extension SMToast {
         titleLabel.textColor = fontColor
         titleLabel.numberOfLines = 2
         titleLabel.text = title
+        titleLabel.isUserInteractionEnabled = true
         titleLabel.sizeToFit()
     }
     private func formatMessageLabel() {
@@ -163,6 +171,7 @@ extension SMToast {
         messageLabel.textColor = fontColor
         messageLabel.numberOfLines = 4
         messageLabel.text = message
+        messageLabel.isUserInteractionEnabled = true
         messageLabel.sizeToFit()
     }
     private func adjustPosition() {
@@ -170,6 +179,22 @@ extension SMToast {
         titleLabel.frame.origin.y += 8
         messageLabel.center.x = bounds.midX
         messageLabel.frame.origin.y += 8
+    }
+}
+
+//MARK: -
+extension SMToast {
+    public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.transform = CGAffineTransform(scaleX: 1.06, y: 1.06)
+    }
+    public override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let topView = UIApplication.topViewController()?.view,
+              let touchCenter = touches.first?.location(in: topView)
+        else { return }
+        center = touchCenter
+    }
+    public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.transform = CGAffineTransform(scaleX: 1, y: 1)
     }
 }
 
@@ -185,17 +210,38 @@ public extension SMToast {
 
 //MARK: - Animation
 extension SMToast {
-    fileprivate func present() {
-        UIApplication.shared.keyWindow?.addSubview(self)
-        UIView.animate(withDuration: fadeDuration, animations: {
-            self.alpha = 0.75
-        }) { _ in
-            UIView.animate(withDuration: self.fadeDuration, delay: self.duration, options: [], animations: {
-                self.alpha = 0.0
-            }, completion: { _ in
-                self.removeFromSuperview()
+    fileprivate func present(fromHold: Bool = false) {
+        if fromHold || shouldShowToast() {
+            SMToast.activeQueue.add(toast: self)
+            UIApplication.shared.keyWindow?.addSubview(self)
+            UIView.animateKeyframes(withDuration: self.fadeDuration, delay: 0, options: .allowUserInteraction, animations: {
+                self.alpha = 0.75
+            }, completion: { (_) in
+                self.fadeOut()
             })
+        }else {
+            SMToast.onHoldQueue.add(toast: self)
         }
+    }
+
+    private func fadeOut() {
+        UIView.animate(withDuration: fadeDuration, delay: duration, options: .allowUserInteraction, animations: {
+            //Threshold to ensure user interaction still enabled
+            self.alpha = 0.02
+        }, completion: { (_) in
+            self.finish()
+        })
+    }
+
+    private func finish() {
+        //Fade out rest of view smoothly
+        UIView.animate(withDuration: 0.3, animations: {
+            self.alpha = 0
+        }, completion: { (_) in
+            self.removeFromSuperview()
+            SMToast.activeQueue.remove(toast: self)
+            self.checkHold()
+        })
     }
 }
 
@@ -224,6 +270,23 @@ extension SMToast {
             height = totalLabelHeight
         }
         return (width+32, height+16)
+    }
+    fileprivate func checkHold() {
+        guard let toast = SMToast.onHoldQueue.first else { return }
+        print(toast)
+        toast.center = self.center
+        present(fromHold: true)
+        SMToast.onHoldQueue.remove(toast: toast)
+    }
+    fileprivate func shouldShowToast() -> Bool {
+        guard let lastToast = SMToast.activeQueue.last else { return true }
+        var newY = (lastToast.frame.minY-8)-(frame.height/2.0)
+        guard newY - (frame.height/2) > 0 else {
+            print("cannot place on screen")
+            return false
+        }
+        center.y = newY
+        return true
     }
 }
 
