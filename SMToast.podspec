@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SMToast'
-  s.version          = '0.2.0'
-  s.summary          = 'SMToast is a simple way to display a message.'
+  s.version          = '0.3.0'
+  s.summary          = 'SMToast is a simple way to display a message. SMToast's are draggable and can be stacked on the screen.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,7 +18,7 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-    "SMToast displays a simple notification at the bottom of any view controller."
+    "SMToast displays a simple notification at the bottom of any view controller. SMToast's are draggable and can be stacked on the screen. SMToast's have many customizable properties."
                        DESC
 
   s.homepage         = 'https://github.com/mandrusiaks/SMToast'
