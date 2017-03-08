@@ -24,6 +24,5 @@ class ViewController: UIViewController {
         SMToast(title: "Another toast", message: "Sometimes you need to present multiple toasts when debugging code.").make()
         SMToast(title: "Network Calls", message: "SMToasts are great for dispalying errors returned from network calls.", toastColor: .red).make()
         SMToast(title: "Random", message: "Just another toast to show the stacking capability of SMToast", toastColor: .blue, duration: 1).make()
-
     }
 }

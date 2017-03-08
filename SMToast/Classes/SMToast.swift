@@ -273,16 +273,14 @@ extension SMToast {
     }
     fileprivate func checkHold() {
         guard let toast = SMToast.onHoldQueue.first else { return }
-        print(toast)
         toast.center = self.center
         present(fromHold: true)
         SMToast.onHoldQueue.remove(toast: toast)
     }
     fileprivate func shouldShowToast() -> Bool {
         guard let lastToast = SMToast.activeQueue.last else { return true }
-        var newY = (lastToast.frame.minY-8)-(frame.height/2.0)
+        let newY = (lastToast.frame.minY-8)-(frame.height/2.0)
         guard newY - (frame.height/2) > 0 else {
-            print("cannot place on screen")
             return false
         }
         center.y = newY
