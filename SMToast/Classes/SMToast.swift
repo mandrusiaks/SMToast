@@ -47,71 +47,71 @@ public class SMToast: UIView {
         super.init(frame: frame)
         initialSetup()
     }
-    convenience init(message: String) {
+    public convenience init(message: String) {
         self.init(title: .defaultString, message: message, toastColor: .defaultToastColor,
                   fontColor: .defaultFontColor, duration: .defaultDuration, fadeDuration: .defaultFadeDuration)
     }
-    convenience init(message: String, duration: TimeInterval) {
+    public convenience init(message: String, duration: TimeInterval) {
         self.init(title: .defaultString, message: message, toastColor: .defaultToastColor,
                   fontColor: .defaultFontColor, duration: duration, fadeDuration: .defaultFadeDuration)
     }
-    convenience init(message: String, toastColor: UIColor) {
+    public convenience init(message: String, toastColor: UIColor) {
         self.init(title: .defaultString, message: message, toastColor: toastColor,
                   fontColor: .defaultFontColor, duration: .defaultDuration, fadeDuration: .defaultFadeDuration)
     }
-    convenience init(message: String, toastColor: UIColor, fontColor: UIColor) {
+    public convenience init(message: String, toastColor: UIColor, fontColor: UIColor) {
         self.init(title: .defaultString, message: message, toastColor: toastColor,
                   fontColor: fontColor, duration: .defaultDuration, fadeDuration: .defaultFadeDuration)
     }
-    convenience init(message: String, toastColor: UIColor, duration: TimeInterval) {
+    public convenience init(message: String, toastColor: UIColor, duration: TimeInterval) {
         self.init(title: .defaultString, message: message, toastColor: toastColor,
                   fontColor: .defaultFontColor, duration: duration, fadeDuration: .defaultFadeDuration)
     }
-    convenience init(message: String, toastColor: UIColor, fontColor: UIColor, duration: TimeInterval) {
+    public convenience init(message: String, toastColor: UIColor, fontColor: UIColor, duration: TimeInterval) {
         self.init(title: .defaultString, message: message, toastColor: toastColor,
                   fontColor: fontColor, duration: duration, fadeDuration: .defaultFadeDuration)
     }
-    convenience init(title: String) {
+    public convenience init(title: String) {
         self.init(title: title, message: .defaultString, toastColor: .defaultToastColor,
                   fontColor: .defaultFontColor, duration: .defaultDuration, fadeDuration: .defaultFadeDuration)
     }
-    convenience init(title: String, duration: TimeInterval) {
+    public convenience init(title: String, duration: TimeInterval) {
         self.init(title: title, message: .defaultString, toastColor: .defaultToastColor,
                   fontColor: .defaultFontColor, duration: duration, fadeDuration: .defaultFadeDuration)
     }
-    convenience init(title: String, toastColor: UIColor) {
+    public convenience init(title: String, toastColor: UIColor) {
         self.init(title: title, message: .defaultString, toastColor: toastColor,
                   fontColor: .defaultFontColor, duration: .defaultDuration, fadeDuration: .defaultFadeDuration)
     }
-    convenience init(title: String, toastColor: UIColor, fontColor: UIColor) {
+    public convenience init(title: String, toastColor: UIColor, fontColor: UIColor) {
         self.init(title: title, message: .defaultString, toastColor: toastColor,
                   fontColor: fontColor, duration: .defaultDuration, fadeDuration: .defaultFadeDuration)
     }
-    convenience init(title: String, toastColor: UIColor, duration: TimeInterval) {
+    public convenience init(title: String, toastColor: UIColor, duration: TimeInterval) {
         self.init(title: title, message: .defaultString, toastColor: toastColor,
                   fontColor: .defaultFontColor, duration: duration, fadeDuration: .defaultFadeDuration)
     }
-    convenience init(title: String, toastColor: UIColor, fontColor: UIColor, duration: TimeInterval) {
+    public convenience init(title: String, toastColor: UIColor, fontColor: UIColor, duration: TimeInterval) {
         self.init(title: title, message: .defaultString, toastColor: toastColor,
                   fontColor: fontColor, duration: duration, fadeDuration: .defaultFadeDuration)
     }
-    convenience init(title: String, message: String) {
+    public convenience init(title: String, message: String) {
         self.init(title: title, message: message, toastColor: .defaultToastColor,
                   fontColor: .defaultFontColor, duration: .defaultDuration, fadeDuration: .defaultFadeDuration)
     }
-    convenience init(title: String, message: String, toastColor: UIColor) {
+    public convenience init(title: String, message: String, toastColor: UIColor) {
         self.init(title: title, message: message, toastColor: toastColor,
                   fontColor: .defaultFontColor, duration: .defaultDuration, fadeDuration: .defaultFadeDuration)
     }
-    convenience init(title: String, message: String, duration: TimeInterval) {
+    public convenience init(title: String, message: String, duration: TimeInterval) {
         self.init(title: title, message: message, toastColor: .defaultToastColor,
                   fontColor: .defaultFontColor, duration: duration, fadeDuration: .defaultFadeDuration)
     }
-    convenience init(title: String, message: String, toastColor: UIColor, duration: TimeInterval) {
+    public convenience init(title: String, message: String, toastColor: UIColor, duration: TimeInterval) {
         self.init(title: title, message: message, toastColor: toastColor,
                   fontColor: .defaultFontColor, duration: duration, fadeDuration: .defaultFadeDuration)
     }
-    convenience init(title: String, message: String, toastColor: UIColor,
+    public convenience init(title: String, message: String, toastColor: UIColor,
                             fontColor: UIColor, duration: TimeInterval) {
         self.init(title: title, message: message, toastColor: toastColor,
                   fontColor: fontColor, duration: duration, fadeDuration: .defaultFadeDuration)
