@@ -35,12 +35,14 @@ SMToast is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
+
 pod "SMToast"
+
 ```
 
 ###Manual
 
-Alternatively, you can simply add ```SMToast.swift``` to your project.
+Alternatively, you can simply add ```SMToast.swift``` and ```SMQueue.swift``` to your project.
 
 ## Basic Examples
 
