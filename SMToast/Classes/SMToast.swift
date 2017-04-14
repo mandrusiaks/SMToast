@@ -17,14 +17,14 @@ public class SMToast: UIView {
 
     //MARK: - Configuration Variables
     fileprivate let cornerRadius: CGFloat = 15
+    fileprivate var title: String = ""
+    fileprivate var message: String = ""
+    fileprivate var toastColor: UIColor = .black
+    fileprivate var fontColor: UIColor = .white
+    fileprivate var duration: TimeInterval = 2
+    fileprivate var fadeDuration: TimeInterval = 1
     let id: TimeInterval = Date().timeIntervalSince1970
-    var title: String = ""
-    var message: String = ""
-    var toastColor: UIColor = .black
-    var fontColor: UIColor = .white
-    var duration: TimeInterval = 2
-    var fadeDuration: TimeInterval = 1
-
+    
     //MARK: - View Components
     fileprivate var view: UIView!
     fileprivate var titleLabel: UILabel!
