@@ -39,13 +39,13 @@ public class SMToast: UIView {
     /**
      Return an SMToast with all properties customized
      
-     -Parameters:
-        -title: The title for the toast. Maximum of 2 lines.
-        -message: The message to be displayed in the toast. Maximum of 4 lines.
-        -toastColor: The background color of the toast.
-        -fontColor: The font color used for the title and/or message.
-        -duration: Delay in between fade in and out.
-        -fadeDuration: Duration of fade in and fade out animation.
+     - Parameters:
+        - title: The title for the toast. Maximum of 2 lines.
+        - message: The message to be displayed in the toast. Maximum of 4 lines.
+        - toastColor: The background color of the toast.
+        - fontColor: The font color used for the title and/or message.
+        - duration: Delay in between fade in and out.
+        - fadeDuration: Duration of fade in and fade out animation.
      */
     public init(title: String, message: String, toastColor: UIColor, fontColor: UIColor, duration: TimeInterval, fadeDuration: TimeInterval) {
         self.title = title
@@ -62,8 +62,8 @@ public class SMToast: UIView {
     /**
      Return an SMToast with custom message
      
-     -Parameters:
-        -message: The message to be displayed in the toast. Maximum of 4 lines.
+     - Parameters:
+        - message: The message to be displayed in the toast. Maximum of 4 lines.
      */
     public convenience init(message: String) {
         self.init(title: .defaultString, message: message, toastColor: .defaultToastColor,
@@ -73,9 +73,9 @@ public class SMToast: UIView {
     /**
      Return an SMToast with custom message and duration
      
-     -Parameters:
-         -message: The message to be displayed in the toast. Maximum of 4 lines.
-         -duration: Delay in between fade in and out.
+     - Parameters:
+         - message: The message to be displayed in the toast. Maximum of 4 lines.
+         - duration: Delay in between fade in and out.
      */
     public convenience init(message: String, duration: TimeInterval) {
         self.init(title: .defaultString, message: message, toastColor: .defaultToastColor,
@@ -85,9 +85,9 @@ public class SMToast: UIView {
     /**
      Return an SMToast with custom message and color
 
-     -Parameters:
-         -message: The message to be displayed in the toast. Maximum of 4 lines.
-         -toastColor: The background color of the toast.
+     - Parameters:
+         - message: The message to be displayed in the toast. Maximum of 4 lines.
+         - toastColor: The background color of the toast.
      */
     public convenience init(message: String, toastColor: UIColor) {
         self.init(title: .defaultString, message: message, toastColor: toastColor,
@@ -97,10 +97,10 @@ public class SMToast: UIView {
     /**
      Return an SMToast with custom message, color, and fontColor
      
-     -Parameters:
-         -message: The message to be displayed in the toast. Maximum of 4 lines.
-         -toastColor: The background color of the toast.
-         -fontColor: The font color used for the title and/or message.
+     - Parameters:
+         - message: The message to be displayed in the toast. Maximum of 4 lines.
+         - toastColor: The background color of the toast.
+         - fontColor: The font color used for the title and/or message.
      */
     public convenience init(message: String, toastColor: UIColor, fontColor: UIColor) {
         self.init(title: .defaultString, message: message, toastColor: toastColor,
@@ -110,10 +110,10 @@ public class SMToast: UIView {
     /**
      Return an SMToast with custom message, color, and duration
      
-     -Parameters:
-         -message: The message to be displayed in the toast. Maximum of 4 lines.
-         -toastColor: The background color of the toast.
-         -duration: Delay in between fade in and out.
+     - Parameters:
+         - message: The message to be displayed in the toast. Maximum of 4 lines.
+         - toastColor: The background color of the toast.
+         - duration: Delay in between fade in and out.
      */
     public convenience init(message: String, toastColor: UIColor, duration: TimeInterval) {
         self.init(title: .defaultString, message: message, toastColor: toastColor,
@@ -123,11 +123,11 @@ public class SMToast: UIView {
     /**
      Return an SMToast with custom message, color, fontColor, and duration
      
-     -Parameters:
-        -message: The message to be displayed in the toast. Maximum of 4 lines.
-        -toastColor: The background color of the toast.
-        -fontColor: The font color used for the title and/or message.
-        -duration: Delay in between fade in and out.
+     - Parameters:
+        - message: The message to be displayed in the toast. Maximum of 4 lines.
+        - toastColor: The background color of the toast.
+        - fontColor: The font color used for the title and/or message.
+        - duration: Delay in between fade in and out.
      */
     public convenience init(message: String, toastColor: UIColor, fontColor: UIColor, duration: TimeInterval) {
         self.init(title: .defaultString, message: message, toastColor: toastColor,
@@ -137,8 +137,8 @@ public class SMToast: UIView {
     /**
      Return an SMToast with custom title
      
-     -Parameters:
-        -title: The title for the toast. Maximum of 2 lines.
+     - Parameters:
+        - title: The title for the toast. Maximum of 2 lines.
      */
     public convenience init(title: String) {
         self.init(title: title, message: .defaultString, toastColor: .defaultToastColor,
@@ -148,9 +148,9 @@ public class SMToast: UIView {
     /**
      Return an SMToast with custom title and duration
      
-     -Parameters:
-        -title: The title for the toast. Maximum of 2 lines.
-        -duration: Delay in between fade in and out.
+     - Parameters:
+        - title: The title for the toast. Maximum of 2 lines.
+        - duration: Delay in between fade in and out.
      */
     public convenience init(title: String, duration: TimeInterval) {
         self.init(title: title, message: .defaultString, toastColor: .defaultToastColor,
@@ -160,9 +160,9 @@ public class SMToast: UIView {
     /**
      Return an SMToast with custom title and color
      
-     -Parameters:
-        -title: The title for the toast. Maximum of 2 lines.
-        -toastColor: The background color of the toast.
+     - Parameters:
+        - title: The title for the toast. Maximum of 2 lines.
+        - toastColor: The background color of the toast.
      */
     public convenience init(title: String, toastColor: UIColor) {
         self.init(title: title, message: .defaultString, toastColor: toastColor,
@@ -172,10 +172,10 @@ public class SMToast: UIView {
     /**
      Return an SMToast with custom title, color, and fontColor
      
-     -Parameters:
-        -title: The title for the toast. Maximum of 2 lines.
-        -toastColor: The background color of the toast.
-        -fontColor: The font color used for the title and/or message.
+     - Parameters:
+        - title: The title for the toast. Maximum of 2 lines.
+        - toastColor: The background color of the toast.
+        - fontColor: The font color used for the title and/or message.
      */
     public convenience init(title: String, toastColor: UIColor, fontColor: UIColor) {
         self.init(title: title, message: .defaultString, toastColor: toastColor,
@@ -185,10 +185,10 @@ public class SMToast: UIView {
     /**
      Return an SMToast with custom title, color, and duration
      
-     -Parameters:
-        -title: The title for the toast. Maximum of 2 lines.
-        -toastColor: The background color of the toast.
-        -duration: Delay in between fade in and out.
+     - Parameters:
+        - title: The title for the toast. Maximum of 2 lines.
+        - toastColor: The background color of the toast.
+        - duration: Delay in between fade in and out.
      */
     public convenience init(title: String, toastColor: UIColor, duration: TimeInterval) {
         self.init(title: title, message: .defaultString, toastColor: toastColor,
@@ -198,11 +198,11 @@ public class SMToast: UIView {
     /**
      Return an SMToast with custom title, color, fontColor, and duration
 
-     -Parameters:
-        -title: The title for the toast. Maximum of 2 lines.
-        -toastColor: The background color of the toast.
-        -fontColor: The font color used for the title and/or message.
-        -duration: Delay in between fade in and out.
+     - Parameters:
+        - title: The title for the toast. Maximum of 2 lines.
+        - toastColor: The background color of the toast.
+        - fontColor: The font color used for the title and/or message.
+        - duration: Delay in between fade in and out.
      */
     public convenience init(title: String, toastColor: UIColor, fontColor: UIColor, duration: TimeInterval) {
         self.init(title: title, message: .defaultString, toastColor: toastColor,
@@ -212,9 +212,9 @@ public class SMToast: UIView {
     /**
      Return an SMToast with custom title and message
      
-     -Parameters:
-        -title: The title for the toast. Maximum of 2 lines.
-        -message: The message to be displayed in the toast. Maximum of 4 lines.
+     - Parameters:
+        - title: The title for the toast. Maximum of 2 lines.
+        - message: The message to be displayed in the toast. Maximum of 4 lines.
      */
     public convenience init(title: String, message: String) {
         self.init(title: title, message: message, toastColor: .defaultToastColor,
@@ -224,10 +224,10 @@ public class SMToast: UIView {
     /**
      Return an SMToast with custom title, message, and color
      
-     -Parameters:
-        -title: The title for the toast. Maximum of 2 lines.
-        -message: The message to be displayed in the toast. Maximum of 4 lines.
-        -toastColor: The background color of the toast.
+     - Parameters:
+        - title: The title for the toast. Maximum of 2 lines.
+        - message: The message to be displayed in the toast. Maximum of 4 lines.
+        - toastColor: The background color of the toast.
      */
     public convenience init(title: String, message: String, toastColor: UIColor) {
         self.init(title: title, message: message, toastColor: toastColor,
@@ -237,10 +237,10 @@ public class SMToast: UIView {
     /**
      Return an SMToast with Return an SMToast with custom title, message, and duration
      
-     -Parameters:
-        -title: The title for the toast. Maximum of 2 lines.
-        -message: The message to be displayed in the toast. Maximum of 4 lines.
-        -duration: Delay in between fade in and out.
+     - Parameters:
+        - title: The title for the toast. Maximum of 2 lines.
+        - message: The message to be displayed in the toast. Maximum of 4 lines.
+        - duration: Delay in between fade in and out.
      */
     public convenience init(title: String, message: String, duration: TimeInterval) {
         self.init(title: title, message: message, toastColor: .defaultToastColor,
@@ -250,11 +250,11 @@ public class SMToast: UIView {
     /**
      Return an SMToast with custom title, message, color, and duration
      
-     -Parameters:
-        -title: The title for the toast. Maximum of 2 lines.
-        -message: The message to be displayed in the toast. Maximum of 4 lines.
-        -toastColor: The background color of the toast.
-        -duration: Delay in between fade in and out.
+     - Parameters:
+        - title: The title for the toast. Maximum of 2 lines.
+        - message: The message to be displayed in the toast. Maximum of 4 lines.
+        - toastColor: The background color of the toast.
+        - duration: Delay in between fade in and out.
      */
     public convenience init(title: String, message: String, toastColor: UIColor, duration: TimeInterval) {
         self.init(title: title, message: message, toastColor: toastColor,
@@ -264,12 +264,12 @@ public class SMToast: UIView {
     /**
      Return an SMToast with custom title, message, color, fontColor, and duration
      
-     -Parameters:
-        -title: The title for the toast. Maximum of 2 lines.
-        -message: The message to be displayed in the toast. Maximum of 4 lines.
-        -toastColor: The background color of the toast.
-        -fontColor: The font color used for the title and/or message.
-        -duration: Delay in between fade in and out.
+     - Parameters:
+        - title: The title for the toast. Maximum of 2 lines.
+        - message: The message to be displayed in the toast. Maximum of 4 lines.
+        - toastColor: The background color of the toast.
+        - fontColor: The font color used for the title and/or message.
+        - duration: Delay in between fade in and out.
      */
     public convenience init(title: String, message: String, toastColor: UIColor,
                             fontColor: UIColor, duration: TimeInterval) {
@@ -383,7 +383,7 @@ extension SMToast {
      Spencer Mandrusiak
 
      - Parameters:
-     -fromHold: Determines if the SMToast is coming from the onHold queue.
+        - fromHold: Determines if the SMToast is coming from the onHold queue.
 
      Before presenting an SMToast, first we check if the toast is coming from the
      onHold queue, or we check to ensure there is enough room for the toast to fit
