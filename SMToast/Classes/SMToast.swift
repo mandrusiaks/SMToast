@@ -295,6 +295,8 @@ extension SMToast {
         addSubview(messageLabel!)
         sizeToFit()
         adjustPosition()
+        let gesture = UIPanGestureRecognizer(target: self, action: #selector(panned))
+        addGestureRecognizer(gesture)
     }
     private func setup() {
         alpha = 0.0
@@ -342,19 +344,20 @@ extension SMToast {
     }
 }
 
-//MARK: -
+//MARK: - Action
 extension SMToast {
     public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.transform = CGAffineTransform(scaleX: 1.06, y: 1.06)
     }
-    public override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
-        guard let topView = UIApplication.topViewController()?.view,
-            let touchCenter = touches.first?.location(in: topView)
-            else { return }
-        center = touchCenter
-    }
     public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.transform = CGAffineTransform(scaleX: 1, y: 1)
+    }
+    func panned(_ sender: UIPanGestureRecognizer) {
+        guard let topView = UIApplication.topViewController()?.view else { return }
+        if sender.numberOfTouches > 0 {
+            let touchCenter = sender.location(ofTouch: 0, in: topView)
+            center = touchCenter
+        }
     }
 }
 
