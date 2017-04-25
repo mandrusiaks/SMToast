@@ -40,7 +40,7 @@ pod "SMToast"
 
 ```
 
-###Manual
+### Manual
 
 Alternatively, you can simply add ```SMToast.swift``` and ```SMQueue.swift``` to your project.
 
