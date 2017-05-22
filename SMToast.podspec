@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SMToast'
-  s.version          = '0.3.5'
+  s.version          = '0.4.0'
   s.summary          = 'SMToast is a simple way to display a message. SMToast\'s are draggable and can be stacked on the screen.'
 
 # This description is used to generate tags and improve search results.
@@ -18,7 +18,9 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-    "SMToast displays a simple notification at the bottom of any view controller. SMToast's are draggable and can be stacked on the screen. SMToast's have many customizable properties."
+"SMToast provides a fast and simple way to display a short message. It works great for showing error messages during development, or notifying users of successful actions. SMToasts will present one on top of the next, as long as they will fit on the screen. If they cannot fit, the leftover SMToasts are added to the "onHold" queue where they will be presented in the position of the most recently expired toast. SMToast's are draggable and can be moved around the screen; perfect for times when you need to move a toast that overlays an important piece of information in your app.
+
+SMToast now allows users to flick away a toast whenever they want. This way, if any toasts are bothering the user and are still in the process of fading away, they have a fun, interactive way of dismissing the toast. Another new feature is being able to enable/disable the onHoldQueue (disabled by default). Simply open SMToast and change ``` "
                        DESC
 
   s.homepage         = 'https://github.com/mandrusiaks/SMToast'
