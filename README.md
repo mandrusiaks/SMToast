@@ -7,6 +7,8 @@
 
 SMToast provides a fast and simple way to display a short message. It works great for showing error messages during development, or notifying users of successful actions. SMToasts will present one on top of the next, as long as they will fit on the screen. If they cannot fit, the leftover SMToasts are added to the "onHold" queue where they will be presented in the position of the most recently expired toast. SMToast's are draggable and can be moved around the screen; perfect for times when you need to move a toast that overlays an important piece of information in your app.
 
+SMToast now allows users to flick away a toast whenever they want. This way, if any toasts are bothering the user and are still in the process of fading away, they have a fun, interactive way of dismissing the toast. Another new feature is being able to enable/disable the onHoldQueue (disabled by default). Simply open SMToast and change ``` isOnHoldQueueEnabled ``` to true or false depending on your needs.  
+
 | ![SMToast](SMToast/Assets/SMToast.png) | ![SMToast2](SMToast/Assets/SMToast2.png) | ![Multi-SMToast](SMToast/Assets/Multi-SMToast.png)|
 |:--------------------------------------:|:----------------------------------------:|:-------------------------------------------------:|
 
@@ -23,9 +25,11 @@ SMToast has the following customizable components and capabilities:
 * Present multiple SMToasts without overlaying one another
 * Contains "onHold" queue for times when too many toast are being created<sup>1</sup>
 * Draggable!
+* SMToast's can now be flicked away off of the screen!
 
 <sup>1 SMToast's that are on hold will be presented with the same center as the most recently expired SMToast. This may cause new toasts to overlap older ones or be presented partially off screen (depending on size). Since SMToast's are draggable, this is not a big issue. However, the size of the new toast and positions of old toasts may be taken into account in the future when determining if an "onHold" toast should be presented.</sup>
 
+isOnHoldQueueEnabled is now disabled by default to reduce users from potentially spamming toasts if generated from a button. However, if you have a scenario where multiple toasts may be required (such as multiple network calls), then you can simply enable isOnHoldQueueEnabled.
 
 ## Installation
 
