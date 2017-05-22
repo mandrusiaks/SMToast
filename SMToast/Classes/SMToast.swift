@@ -16,6 +16,7 @@ public class SMToast: UIView {
     fileprivate static var onHoldQueue = SMQueue()
 
     //MARK: - Configuration Variables
+    public var isOnHoldQueueEnabled = false
     fileprivate let cornerRadius: CGFloat = 15
     fileprivate var title: String = ""
     fileprivate var message: String = ""
@@ -24,11 +25,25 @@ public class SMToast: UIView {
     fileprivate var duration: TimeInterval = 2
     fileprivate var fadeDuration: TimeInterval = 1
     let id: TimeInterval = Date().timeIntervalSince1970
-    
+
+    //MARK: - Variables
+    fileprivate var initialCenter: CGPoint!
+    fileprivate var animator: UIDynamicAnimator?
+
     //MARK: - View Components
     fileprivate var view: UIView!
     fileprivate var titleLabel: UILabel!
     fileprivate var messageLabel: UILabel!
+
+    public override var center: CGPoint {
+        didSet {
+            let maxX = UIScreen.main.bounds.width
+            let maxY = UIScreen.main.bounds.height
+            if center.x < 0 || center.x > maxX || center.y < 0 || center.y > maxY {
+                self.removeFromSuperview()
+            }
+        }
+    }
 
     //MARK: - Initialization
     required public init?(coder decoder: NSCoder) {
@@ -295,6 +310,7 @@ extension SMToast {
         addSubview(messageLabel!)
         sizeToFit()
         adjustPosition()
+        setupDynamics()
         let gesture = UIPanGestureRecognizer(target: self, action: #selector(panned))
         addGestureRecognizer(gesture)
     }
@@ -314,6 +330,10 @@ extension SMToast {
         view.layer.cornerRadius = cornerRadius
         view.isUserInteractionEnabled = true
         addSubview(view)
+    }
+    private func setupDynamics() {
+        self.animator = UIDynamicAnimator(referenceView: self)
+
     }
     private func formatTitleLabel() {
         titleLabel = UILabel(frame: .zero)
@@ -346,17 +366,34 @@ extension SMToast {
 
 //MARK: - Action
 extension SMToast {
-    public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.transform = CGAffineTransform(scaleX: 1.06, y: 1.06)
-    }
-    public override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.transform = CGAffineTransform(scaleX: 1, y: 1)
-    }
     func panned(_ sender: UIPanGestureRecognizer) {
         guard let topView = UIApplication.topViewController()?.view else { return }
-        if sender.numberOfTouches > 0 {
-            let touchCenter = sender.location(ofTouch: 0, in: topView)
-            center = touchCenter
+        let location = sender.location(in: topView)
+        switch sender.state {
+        case .began:
+            self.transform = CGAffineTransform(scaleX: 1.06, y: 1.06)
+            self.animator?.removeAllBehaviors()
+            break
+        case .ended:
+            center = sender.location(in: topView)
+            self.transform = CGAffineTransform(scaleX: 1, y: 1)
+            let velocity = sender.velocity(in: topView)
+            let magnitude = sqrt((velocity.x * velocity.x) + (velocity.y * velocity.y))
+            if magnitude > 1500 {
+                let push = UIPushBehavior(items: [self], mode: .continuous)
+                push.pushDirection = CGVector(dx: (velocity.x/10), dy: (velocity.y/10))
+                push.magnitude = magnitude / 35
+                self.animator?.addBehavior(push)
+
+                let itemBehaviour = UIDynamicItemBehavior(items: [self])
+                itemBehaviour.friction = 0.8
+                itemBehaviour.allowsRotation = true
+                self.animator?.addBehavior(itemBehaviour)
+            }
+            break
+        default:
+            center = sender.location(in: topView)
+            break
         }
     }
 }
@@ -372,6 +409,7 @@ public extension SMToast {
     func make() {
         guard let topView = UIApplication.topViewController()?.view else { return }
         if title == "" && message == "" { return }
+        initialCenter = center
         center.x = topView.center.x
         present()
     }
@@ -410,7 +448,9 @@ extension SMToast {
                 self.fadeOut()
             })
         }else {
-            SMToast.onHoldQueue.add(toast: self)
+            if isOnHoldQueueEnabled {
+                SMToast.onHoldQueue.add(toast: self)
+            }
         }
     }
 
@@ -451,7 +491,9 @@ extension SMToast {
         }, completion: { (_) in
             self.removeFromSuperview()
             SMToast.activeQueue.remove(toast: self)
-            self.checkHold()
+            if self.isOnHoldQueueEnabled {
+                self.checkHold()
+            }
         })
     }
 }
@@ -499,7 +541,7 @@ extension SMToast {
 
     fileprivate func checkHold() {
         guard let toast = SMToast.onHoldQueue.first else { return }
-        toast.center = self.center
+        toast.center = self.initialCenter
         present(fromHold: true)
         SMToast.onHoldQueue.remove(toast: toast)
     }
@@ -512,11 +554,10 @@ extension SMToast {
      */
     fileprivate func shouldShowToast() -> Bool {
         guard let lastToast = SMToast.activeQueue.last else { return true }
-        let newY = (lastToast.frame.minY-8)-(frame.height/2.0)
-        guard newY - (frame.height/2) > 0 else {
-            return false
-        }
+        let newY = (lastToast.initialCenter!.y - 8) - (frame.height)
+        guard newY - (frame.height/2) > 0 else { return false }
         center.y = newY
+        initialCenter.y = newY
         return true
     }
 }
