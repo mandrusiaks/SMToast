@@ -25,4 +25,7 @@ class ViewController: UIViewController {
         SMToast(title: "Network Calls", message: "SMToasts are great for dispalying errors returned from network calls.", toastColor: .red).make()
         SMToast(title: "Random", message: "Just another toast to show the stacking capability of SMToast", toastColor: .blue, duration: 1).make()
     }
+    @IBAction func makeToastTapped(_ sender: UIButton) {
+        SMToast(title: "Toasty").make()
+    }
 }
