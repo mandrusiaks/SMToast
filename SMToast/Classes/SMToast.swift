@@ -367,8 +367,7 @@ extension SMToast {
 //MARK: - Action
 extension SMToast {
     func panned(_ sender: UIPanGestureRecognizer) {
-        guard let topView = UIApplication.topViewController()?.view else { return }
-        let location = sender.location(in: topView)
+        guard let topView = UIApplication.shared.windows.first else { return }
         switch sender.state {
         case .began:
             self.transform = CGAffineTransform(scaleX: 1.06, y: 1.06)
@@ -379,7 +378,7 @@ extension SMToast {
             self.transform = CGAffineTransform(scaleX: 1, y: 1)
             let velocity = sender.velocity(in: topView)
             let magnitude = sqrt((velocity.x * velocity.x) + (velocity.y * velocity.y))
-            if magnitude > 1500 {
+            if magnitude > 1250 {
                 let push = UIPushBehavior(items: [self], mode: .continuous)
                 push.pushDirection = CGVector(dx: (velocity.x/10), dy: (velocity.y/10))
                 push.magnitude = magnitude / 35
@@ -407,7 +406,7 @@ public extension SMToast {
      Spencer Mandrusiak
      */
     func make() {
-        guard let topView = UIApplication.topViewController()?.view else { return }
+        guard let topView = UIApplication.shared.windows.first else { return }
         if title == "" && message == "" { return }
         initialCenter = center
         center.x = topView.center.x
@@ -441,8 +440,8 @@ extension SMToast {
     fileprivate func present(fromHold: Bool = false) {
         if fromHold || shouldShowToast() {
             SMToast.activeQueue.add(toast: self)
-            UIApplication.shared.keyWindow?.addSubview(self)
-            UIView.animateKeyframes(withDuration: self.fadeDuration, delay: 0, options: .allowUserInteraction, animations: {
+            UIApplication.shared.windows.first?.addSubview(self)
+            UIView.animate(withDuration: self.duration, delay: 0, options: .allowUserInteraction, animations: {
                 self.alpha = 0.75
             }, completion: { (_) in
                 self.fadeOut()
@@ -567,29 +566,9 @@ extension SMToast {
 
 
 /*****************************************
-        Extensions & Default Values
+             Default Values
  *****************************************/
 
-
-//MARK: - UIApplication
-extension UIApplication {
-    class func topViewController(_ controller: UIViewController? = UIApplication.shared.keyWindow?.rootViewController) -> UIViewController? {
-        if let tabBarController = controller as? UITabBarController {
-            if let selectedVC = tabBarController.selectedViewController {
-                return topViewController(selectedVC)
-            }
-        }
-        if let navController = controller as? UINavigationController {
-            if let navRootVC = navController.visibleViewController {
-                return topViewController(navRootVC)
-            }
-        }
-        if let presentedVC = controller?.presentedViewController {
-            return topViewController(presentedVC)
-        }
-        return controller
-    }
-}
 
 //MARK: - String
 extension String {
