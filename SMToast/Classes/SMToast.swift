@@ -583,6 +583,6 @@ extension UIColor {
 
 //MARK: - TimeInterval
 extension TimeInterval {
-    static let defaultDuration = 3.0
-    static let defaultFadeDuration = 1.0
+    static let defaultDuration = 1.0
+    static let defaultFadeDuration = 0.75
 }
