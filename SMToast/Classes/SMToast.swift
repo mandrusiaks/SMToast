@@ -16,7 +16,8 @@ public class SMToast: UIView {
     fileprivate static var onHoldQueue = SMQueue()
 
     //MARK: - Configuration Variables
-    public var isOnHoldQueueEnabled = false
+    static public var isOnHoldQueueEnabled = false
+    static public var isActiveQueueEnabled = false
     fileprivate let cornerRadius: CGFloat = 15
     fileprivate var title: String = ""
     fileprivate var message: String = ""
@@ -406,6 +407,7 @@ public extension SMToast {
      Spencer Mandrusiak
      */
     func make() {
+        if !SMToast.isActiveQueueEnabled { if SMToast.activeQueue.size > 0 { return } }
         guard let topView = UIApplication.shared.windows.first else { return }
         if title == "" && message == "" { return }
         initialCenter = center
@@ -447,7 +449,7 @@ extension SMToast {
                 self.fadeOut()
             })
         }else {
-            if isOnHoldQueueEnabled {
+            if SMToast.isOnHoldQueueEnabled {
                 SMToast.onHoldQueue.add(toast: self)
             }
         }
@@ -490,7 +492,7 @@ extension SMToast {
         }, completion: { (_) in
             self.removeFromSuperview()
             SMToast.activeQueue.remove(toast: self)
-            if self.isOnHoldQueueEnabled {
+            if SMToast.isOnHoldQueueEnabled {
                 self.checkHold()
             }
         })
