@@ -7,7 +7,15 @@
 
 SMToast provides a fast and simple way to display a short message. It works great for showing error messages during development, or notifying users of successful actions. SMToasts will present one on top of the next, as long as they will fit on the screen. If they cannot fit, the leftover SMToasts are added to the "onHold" queue where they will be presented in the position of the most recently expired toast. SMToast's are draggable and can be moved around the screen; perfect for times when you need to move a toast that overlays an important piece of information in your app.
 
-SMToast now allows users to flick away a toast whenever they want. This way, if any toasts are bothering the user and are still in the process of fading away, they have a fun, interactive way of dismissing the toast. Another new feature is being able to enable/disable the onHoldQueue (disabled by default). Simply open SMToast and change ``` isOnHoldQueueEnabled ``` to true or false depending on your needs.  
+SMToast now allows users to flick away a toast whenever they want. This way, if any toasts are bothering the user and are still in the process of fading away, they have a fun, interactive way of dismissing the toast. Another new feature is being able to enable/disable the onHoldQueue (disabled by default). 
+
+*Important*: Now by default, SMToast has a new value ```isActiveQueueEnabled``` set to false. This means only one toast will be displayed on the screen until the most active toast has been completely faded out. This avoids users from spamming toasts and stacking them all the way up the screen. However, you can easily enable this functionality by setting ```isActiveQueueEnabled = true``` (ideally in your AppDelegate).
+
+To change ```isActiveQueueEnabled``` or ```isOnHoldQueueEnabled```, change the following in your AppDelegate:
+
+```SMToast.isActiveQueueEnabled = true```
+
+```SMToast.isOnHoldQueueEnabled = true```
 
 | ![SMToast](SMToast/Assets/SMToast.png) | ![SMToast2](SMToast/Assets/SMToast2.png) | ![Multi-SMToast](SMToast/Assets/Multi-SMToast.png)|
 |:--------------------------------------:|:----------------------------------------:|:-------------------------------------------------:|
